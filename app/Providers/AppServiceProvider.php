@@ -8,6 +8,7 @@ use Elasticsearch\Client;
 
 use App\Models\Article;
 use App\Observers\ElasticsearchObserver;
+use App\Models\ElasticsearchRepository;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -18,6 +19,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->app->bind(ElasticsearchRepository::class, function($app) {
+            return new ElasticsearchRepository($app->make(Client::class));            
+        });
+
         $this->app->bind(Client::class, function($app) {
             return ClientBuilder::create()
                 ->setHosts([env('SEARCH_HOST')])

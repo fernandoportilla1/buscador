@@ -7,6 +7,7 @@ Route::get('/', function (Elasticsearch\Client $client) {
 
 	$response = $client->indices()->create($params);
 	dd($response);*/
-	
     return view('welcome');
 });
+
+Route::get('/searcher', 'SearcherController@search')->name('searcher');
