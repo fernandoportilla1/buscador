@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Elasticsearch\ClientBuilder;
+use Elasticsearch\Client;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,7 +15,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->bind(Client::class, function($app) {
+            return ClientBuilder::create()
+                ->setHosts([env('SEARCH_HOST')])
+                ->build();
+        });
     }
 
     /**
