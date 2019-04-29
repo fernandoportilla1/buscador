@@ -6,6 +6,9 @@ use Illuminate\Support\ServiceProvider;
 use Elasticsearch\ClientBuilder;
 use Elasticsearch\Client;
 
+use App\Models\Article;
+use App\Observers\ElasticsearchObserver;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -29,6 +32,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Article::observe(ElasticsearchObserver::class);
     }
 }

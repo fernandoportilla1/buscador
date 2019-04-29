@@ -7,4 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Article extends Model
 {
     protected $fillable = ['title','content'];
+
+    public function toArray() 
+    {
+    	return [
+    		"title" => $this->title
+    	];
+    }
 }
