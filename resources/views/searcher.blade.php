@@ -14,8 +14,8 @@
     
     <div class="container">
         <div class="row justify-content-center">
-            <div id="searcher" class="col-sm-6">
-                <form action="{{ route('searcher') }}" class="form-inline">
+            <div id="searcher" class="col-sm-8">
+                <form action="{{ route('searcher') }}" class="form-inline justify-content-center">
                   <div class="form-group mx-sm-3 mb-2">
                     <input type="text" name="q" class="form-control" placeholder="Buscar .." value="{{ old('qsss') }}">
                   </div>
