@@ -10,4 +10,5 @@ Route::get('/', function (Elasticsearch\Client $client) {
     return view('welcome');
 });
 
-Route::get('/searcher', 'SearcherController@search')->name('searcher');
+Route::get('/searcher', 'SearcherController@home');
+Route::get('/search', 'SearcherController@search');

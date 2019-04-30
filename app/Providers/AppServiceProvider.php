@@ -23,7 +23,7 @@ class AppServiceProvider extends ServiceProvider
             return new ElasticsearchRepository($app->make(Client::class));            
         });
 
-        $this->app->bind(Client::class, function($app) {
+        $this->app->singleton(Client::class, function($app) {
             return ClientBuilder::create()
                 ->setHosts([env('SEARCH_HOST')])
                 ->build();

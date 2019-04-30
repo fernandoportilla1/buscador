@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Buscador</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
 <body>
-    <style>
+    {{--<style>
         #searcher {
             margin-top: 100px;
         }
@@ -32,9 +33,12 @@
                 </div>
             </div>
             @endforeach 
-
         </div>
         
+    </div> --}}
+    <div id="app">
+        <search-component></search-component>
     </div>
+    <script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>

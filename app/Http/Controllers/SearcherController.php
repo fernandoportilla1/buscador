@@ -8,14 +8,20 @@ use App\Models\Article;
 
 class SearcherController extends Controller
 {
+    public function home() 
+    {
+        return view('searcher');
+    }
+
     public function search(Request $request, ElasticsearchRepository $client) 
     {
 		$articles = $client->search($request->input('q', ''));
-		$articles = $this->mapResult($articles['hits']['hits']);
-		return view('searcher', compact("articles"));
+		$articles = $this->mapToModel($articles['hits']['hits']);
+        return $articles;
+		// return view('searcher', compact("articles"));
     }
 
-    public function mapResult($articles)
+    public function mapToModel($articles)
     {
     	$source = array_map(function($source) {
     		$article = new Article;
