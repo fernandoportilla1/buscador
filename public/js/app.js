@@ -1803,6 +1803,11 @@ __webpack_require__.r(__webpack_exports__);
         console.log(e);
       });
     }
+  },
+  methods: {
+    highlight: function highlight(text, query) {
+      return text.replace(query || query, '<span class="highlight">' + query + '</span>');
+    }
   }
 });
 
@@ -6265,7 +6270,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n#searcher {\n    margin-top: 100px;\n}\n", ""]);
+exports.push([module.i, "\n#searcher {\n    margin-top: 100px;\n}\n.highlight {\n  background-color: yellow;\n}\n", ""]);
 
 // exports
 
@@ -37775,11 +37780,22 @@ var render = function() {
           return _c("div", { staticClass: "col-sm-8" }, [
             _c("div", { staticClass: "card mb-4" }, [
               _c("div", { staticClass: "card-body" }, [
-                _c("h5", { staticClass: "card-title" }, [
-                  _vm._v(_vm._s(article.title))
-                ]),
+                _c("h5", {
+                  staticClass: "card-title",
+                  domProps: {
+                    innerHTML: _vm._s(_vm.highlight(article.title, _vm.query))
+                  }
+                }),
                 _vm._v(" "),
-                _c("p", [_vm._v("tags: " + _vm._s(article.tags))])
+                _c(
+                  "p",
+                  {
+                    domProps: {
+                      innerHTML: _vm._s(_vm.highlight(article.tags, _vm.query))
+                    }
+                  },
+                  [_vm._v("tags: ")]
+                )
               ])
             ])
           ])
