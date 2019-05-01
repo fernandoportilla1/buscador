@@ -1784,7 +1784,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -1798,7 +1797,8 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/search?q=' + this.query).then(function (response) {
-        if (response.data.length > 0) _this.articles = response.data;
+        _this.articles = [];
+        _this.articles = response.data;
       })["catch"](function (e) {
         console.log(e);
       });
@@ -37747,50 +37747,39 @@ var render = function() {
       "div",
       { staticClass: "row justify-content-center" },
       [
-        _c("div", { staticClass: "col-sm-8", attrs: { id: "searcher" } }, [
-          _c(
-            "form",
-            {
-              staticClass: "form-inline justify-content-center",
-              on: {
-                submit: function($event) {
-                  $event.preventDefault()
-                }
+        _c("div", { staticClass: "col-sm-8 mb-4", attrs: { id: "searcher" } }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.query,
+                expression: "query"
               }
-            },
-            [
-              _c("div", { staticClass: "form-group mx-sm-3 mb-2" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.query,
-                      expression: "query"
-                    }
-                  ],
-                  staticClass: "form-control",
-                  attrs: { type: "text", name: "q", placeholder: "Buscar .." },
-                  domProps: { value: _vm.query },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.query = $event.target.value
-                    }
-                  }
-                })
-              ])
-            ]
-          )
+            ],
+            staticClass: "form-control",
+            attrs: { type: "text", name: "q", placeholder: "Buscar .." },
+            domProps: { value: _vm.query },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.query = $event.target.value
+              }
+            }
+          })
         ]),
         _vm._v(" "),
         _vm._l(_vm.articles, function(article) {
           return _c("div", { staticClass: "col-sm-8" }, [
-            _c("div", { staticClass: "card-body" }, [
-              _c("h5", { staticClass: "card-title" }, [
-                _vm._v(_vm._s(article.title))
+            _c("div", { staticClass: "card mb-4" }, [
+              _c("div", { staticClass: "card-body" }, [
+                _c("h5", { staticClass: "card-title" }, [
+                  _vm._v(_vm._s(article.title))
+                ]),
+                _vm._v(" "),
+                _c("p", [_vm._v("tags: " + _vm._s(article.tags))])
               ])
             ])
           ])

@@ -20,8 +20,9 @@ class ElasticsearchRepository
 		    'type' => $article->getTable(),
 		    'body' => [
 		        'query' => [
-		            'match' => [
-		                'title' => $q
+		            'multi_match' => [
+		                'query' => $q,
+		                'fields' => ['title','tags']
 		            ]
 		        ]
 		    ]

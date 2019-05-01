@@ -1,15 +1,16 @@
 <template>
     <div class="container">
         <div class="row justify-content-center">
-            <div id="searcher" class="col-sm-8">
-              <div class="form-group mx-sm-3 mb-2">
+            <div id="searcher" class="col-sm-8 mb-4">
                 <input v-model="query" type="text" name="q" class="form-control" placeholder="Buscar ..">
-              </div>
             </div>
             
-            <div v-for="article in articles"  class="col-sm-8">
-                <div class="card-body">
-                    <h5 class="card-title">{{ article.title }}</h5>
+            <div v-for="article in articles" class="col-sm-8">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ article.title }}</h5>
+                        <p>tags: {{ article.tags }}</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -31,8 +32,8 @@
             query: function(val) {
                 axios.get('/search?q=' + this.query)
                 .then(response => {
-                    if(response.data.length > 0)
-                        this.articles = response.data;
+                    this.articles = [];
+                    this.articles = response.data;
                 })
                 .catch(e => {
                     console.log(e);
